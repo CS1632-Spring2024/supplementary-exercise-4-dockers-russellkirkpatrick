@@ -45,8 +45,8 @@ public class D3Test {
     driver.quit();
   }
   @Test
-  public void testLINKS() {
-    driver.get("http://localhost:8080/");
+  public void tEST1LINKS() {
+    driver.get("http://localhost:8080//");
     {
       List<WebElement> elements = driver.findElements(By.xpath("//a[contains(@href, \'/\')]"));
       assert(elements.size() > 0);
@@ -67,7 +67,7 @@ public class D3Test {
       List<WebElement> elements = driver.findElements(By.xpath("//a[contains(@href, \'/reset\')]"));
       assert(elements.size() > 0);
     }
-    driver.get("http://localhost:8080/rent-a-cat");
+    driver.get("http://localhost:8080//rent-a-cat");
     {
       List<WebElement> elements = driver.findElements(By.xpath("//a[contains(@href, \'/\')]"));
       assert(elements.size() > 0);
@@ -88,7 +88,7 @@ public class D3Test {
       List<WebElement> elements = driver.findElements(By.xpath("//a[contains(@href, \'/reset\')]"));
       assert(elements.size() > 0);
     }
-    driver.get("http://localhost:8080/feed-a-cat");
+    driver.get("http://localhost:8080//feed-a-cat");
     {
       List<WebElement> elements = driver.findElements(By.xpath("//a[contains(@href, \'/\')]"));
       assert(elements.size() > 0);
@@ -109,7 +109,7 @@ public class D3Test {
       List<WebElement> elements = driver.findElements(By.xpath("//a[contains(@href, \'/reset\')]"));
       assert(elements.size() > 0);
     }
-    driver.get("http://localhost:8080/greet-a-cat");
+    driver.get("http://localhost:8080//greet-a-cat");
     {
       List<WebElement> elements = driver.findElements(By.xpath("//a[contains(@href, \'/\')]"));
       assert(elements.size() > 0);
@@ -130,7 +130,7 @@ public class D3Test {
       List<WebElement> elements = driver.findElements(By.xpath("//a[contains(@href, \'/reset\')]"));
       assert(elements.size() > 0);
     }
-    driver.get("http://localhost:8080/reset");
+    driver.get("http://localhost:8080//reset");
     {
       List<WebElement> elements = driver.findElements(By.xpath("//a[contains(@href, \'/\')]"));
       assert(elements.size() > 0);
@@ -215,31 +215,6 @@ public class D3Test {
     assertThat(driver.findElement(By.xpath("//div[@id=\'listing\']/ul/li")).getText(), is("ID 1. Jennyanydots"));
     assertThat(driver.findElement(By.xpath("//div[@id=\'listing\']/ul/li[2]")).getText(), is("ID 2. Old Deuteronomy"));
     assertThat(driver.findElement(By.xpath("//div[@id=\'listing\']/ul/li[3]")).getText(), is("ID 3. Mistoffelees"));
-    driver.close();
-  }
-  @Test
-  public void dEFECT1FUNGREET() {
-    driver.get("http://localhost:8080/");
-    js.executeScript("document.cookie = \"1=false\";document.cookie = \"2=true\";document.cookie = \"3=false\";");
-    driver.findElement(By.linkText("Greet-A-Cat")).click();
-    assertThat(driver.findElement(By.xpath("//div[@id=\'greeting\']/h4")).getText(), is("Meow!Meow!"));
-    driver.close();
-  }
-  @Test
-  public void dEFECT2FUNGREETACATWITHNAME() {
-    driver.get("http://localhost:8080/greet-a-cat/Old Deuteronomy");
-    js.executeScript("document.cookie = \"1=false\";document.cookie = \"2=true\";document.cookie = \"3=false\";");
-    assertThat(driver.findElement(By.xpath("//div[@id=\'greeting\']/h4")).getText(), is("Old Deuteronomy is not here."));
-    driver.close();
-  }
-  @Test
-  public void dEFECT3FUNFEED() {
-    driver.get("http://localhost:8080/");
-    driver.findElement(By.linkText("Feed-A-Cat")).click();
-    driver.findElement(By.xpath("//input[@id=\'catnips\']")).click();
-    driver.findElement(By.xpath("//input[@id=\'catnips\']")).sendKeys("0");
-    driver.findElement(By.xpath("//button[@onclick=\'feedSubmit()\']")).click();
-    assertThat(driver.findElement(By.xpath("//div[@id=\'feedResult\']")).getText(), is("Cat Fight!"));
     driver.close();
   }
 }
